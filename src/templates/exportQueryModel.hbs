@@ -1,5 +1,15 @@
 {{>header}}
 
+{{#each parameters}}
+{{#notEquals this.in 'body'}}
+{{#if this.imports}}
+{{#each this.imports}}
+import { {{{this}}} } from './{{{hyphenCase this}}}';
+{{/each}}
+{{/if}}
+{{/notEquals}}
+{{/each}}
+
 export interface {{{pascalCase name}}}Params {
   {{#each parameters}}
   {{#notEquals this.in 'body'}}
